@@ -13,7 +13,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <div className="App"></div>
     </>
   );
 }
