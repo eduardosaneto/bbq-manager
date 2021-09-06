@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import UserContext from "../../context/UserContext";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,6 +8,10 @@ import { Form } from "../../components/Form";
 import Background from "../../components/Barbecues/Background";
 import Button from "../../components/Form/Button";
 import Title from "../../components/Title";
+
+import UserContext from "../../context/UserContext";
+import FoodContext from "../../context/FoodContext";
+import DrinkContext from "../../context/DrinkContext";
 
 export default function AddBarbecue() {
   const history = useHistory();
@@ -22,6 +25,8 @@ export default function AddBarbecue() {
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
   const { user } = useContext(UserContext);
+  const { setFood } = useContext(FoodContext);
+  const { setDrink } = useContext(DrinkContext);
 
   const close = { autoClose: 3000 };
 
@@ -48,6 +53,8 @@ export default function AddBarbecue() {
 
     const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/send-barbecue`, body, config);
     request.then(response => {
+      setFood(foodMoney);
+      setDrink(drinkMoney);
       history.push("/barbecues");
     });
     request.catch(error => {
