@@ -3,12 +3,15 @@ import styled from "styled-components";
 export const Form = styled.form`
   width: 310px;
   height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   margin: 0 auto;
   padding-top: 20px;
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   span {
     width: 200px;
