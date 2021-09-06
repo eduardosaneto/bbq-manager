@@ -1,5 +1,22 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import GlobalStyle from "./assets/styles/GlobalStyle";
+import SignUp from "./pages/SignUp";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      <GlobalStyle />
+      <Router>
+        <ToastContainer autoClose={2000} closeOnClick={true} />
+        <Switch>
+          <Route path="/sign-up" exact>
+            <SignUp />
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  );
 }
 
 export default App;
