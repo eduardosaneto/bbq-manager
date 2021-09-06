@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import GlobalStyle from "./assets/styles/GlobalStyle";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Barbecues from "./pages/Barbecues";
 import UserContext from "./context/UserContext";
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route path="/sign-up" exact>
               <SignUp />
+            </Route>
+            <Route path="/barbecues" exact>
+              <Barbecues />
             </Route>
           </Switch>
         </Router>
