@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Form = styled.form`
+export const Form = styled.form`
   width: 310px;
   height: auto;
   display: flex;
@@ -22,4 +22,12 @@ const Form = styled.form`
   }
 `;
 
-export default Form;
+export const Row = styled.div`
+  width: 282px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  font-size: 16px;
+  font-weight: 700;
+`;
