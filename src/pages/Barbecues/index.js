@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -6,13 +6,12 @@ import { toast } from "react-toastify";
 import { Container } from "../../components/Barbecues/Container";
 import PageTitle from "../../components/Barbecues/PageTitle";
 import Box from "../../components/Barbecues/Box";
-import { AddBarbecue, BbqIcon } from "../../components/Barbecues/AddBarbecue";
+import { AddNew, BbqIcon } from "../../components/Barbecues/AddNew";
 import Title from "../../components/Title";
 import Background from "../../components/Barbecues/Background";
 import Message from "../../components/Barbecues/Message";
 
 export default function Barbecues() {
-  const location = useLocation();
   const [barbecues, setBarbecues] = useState([]);
   const [isThereABarbecue, setIsThereABarbecue] = useState(false);
   const localstorage = JSON.parse(localStorage.user);
@@ -55,9 +54,11 @@ export default function Barbecues() {
               <p>Marque agora o seu churrasco e seja feliz!</p>
             </Message>
           )}
-          <AddBarbecue>
-            <BbqIcon />
-          </AddBarbecue>
+          <Link to="/add-barbecue">
+            <AddNew>
+              <BbqIcon />
+            </AddNew>
+          </Link>
         </Container>
       </Background>
     </>

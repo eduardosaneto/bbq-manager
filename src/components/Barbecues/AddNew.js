@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { GiBarbecue } from "react-icons/gi";
 
-export const AddBarbecue = styled.div`
+export const AddNew = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 40px;
