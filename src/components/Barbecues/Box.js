@@ -1,29 +1,19 @@
 import styled from "styled-components";
 
-export default function Box() {
+export default function Box( { barbecues } ) {
+  const { id, name, date, amountCollected, totalParticipants } = barbecues;
+
   return (
     <>
-      <BarbecueBox>
-        <h1>Churras Teste</h1>
-        <h2>26/07</h2>
+      <BarbecueBox key={id}>
+        <h1>{name}</h1>
+        <h2>{date}</h2>
         <div>
           <span>
-            <p>15</p>
+            <p>{totalParticipants}</p>
           </span>
           <span>
-            <p>R$180,00</p>
-          </span>
-        </div>
-      </BarbecueBox>
-      <BarbecueBox>
-        <h1>Churras Teste</h1>
-        <h2>26/07</h2>
-        <div>
-          <span>
-            <p>15</p>
-          </span>
-          <span>
-            <p>R$180,00</p>
+            <p>R${amountCollected},00</p>
           </span>
         </div>
       </BarbecueBox>
