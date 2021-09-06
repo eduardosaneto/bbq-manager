@@ -52,28 +52,30 @@ export default function SignUp() {
     <Background>
       <Title />
       <Form onSubmit={register}>
-        <span>
-          <h1>Realize o seu cadastro</h1>
-        </span>
-        <Input label="Nome" type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} />
-        <Input id="E-mail" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} />
-        <Input
-          label="Senha"
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <Input
-          label="Repita sua senha"
-          type="password"
-          placeholder="Repita sua senha"
-          value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
-        />
-        <Button type="submit" color="primary" disabled={loading} location={location}>
+        <fieldset disabled={`${loading ? "disabled" : ""}`}>
+          <span>
+            <h1>Realize o seu cadastro</h1>
+          </span>
+          <Input label="Nome" type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} />
+          <Input id="E-mail" type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} />
+          <Input
+            label="Senha"
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <Input
+            label="Repita sua senha"
+            type="password"
+            placeholder="Repita sua senha"
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+          />
+          <Button type="submit" color="primary" disabled={loading} location={location}>
           Cadastrar
-        </Button>
+          </Button>
+        </fieldset>
       </Form>
       <Row>
         <Link to="/">Já está inscrito? Faça login</Link>
