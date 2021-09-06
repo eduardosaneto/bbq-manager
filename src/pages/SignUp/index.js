@@ -1,6 +1,7 @@
 import { useLocation, useHistory, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import Title from "../../components/Title";
 import Background from "../../components/Background";
@@ -15,6 +16,9 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const close = { autoClose: 2000 };
 
   const body = {
     name,
@@ -25,15 +29,23 @@ export default function SignUp() {
 
   function register(e) {
     e.preventDefault();
+    setLoading(true);
 
-    const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-up`, body);
-    request.then(response => {
-      alert("Seu cadastro foi concluído com sucesso");
-      history.push("/");
-    });
-    request.catch(error => {
-      alert("Não foi possível realizar o cadastro. Por favor, preencha os campos corretamente");
-    });
+    if (password !== confirmPassword) {
+      toast.error("As senhas devem ser iguais!", close);
+      setLoading(false);
+    } else {
+      const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-up`, body);
+      request.then(response => {
+        toast.success("Seu cadastro foi concluído com sucesso", close);
+        setLoading(false);
+        history.push("/");
+      });
+      request.catch(error => {
+        toast.error("Não foi possível realizar o cadastro. Por favor, preencha os campos corretamente", close);
+        setLoading(false);
+      });
+    }
   }
 
   return (
@@ -59,7 +71,7 @@ export default function SignUp() {
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
         />
-        <Button type="submit" color="primary" location={location}>
+        <Button type="submit" color="primary" disabled={loading} location={location}>
           Cadastrar
         </Button>
       </Form>

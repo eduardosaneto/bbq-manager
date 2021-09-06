@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import GlobalStyle from "./assets/styles/GlobalStyle";
 import SignUp from "./pages/SignUp";
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <GlobalStyle />
       <Router>
+        <ToastContainer autoClose={2000} closeOnClick={true} />
         <Switch>
           <Route path="/sign-up" exact>
             <SignUp />
