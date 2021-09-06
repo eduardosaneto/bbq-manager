@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
-  width: 310px;
+  min-width: 320px;
+  max-width: 500px;
+  padding: 0 15px;
   height: auto;
-  margin: 0 auto;
-  padding: 20px 15px 0 15px;
+  margin: 10px auto 0 auto;
+  padding: 20px 15px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
 
   fieldset {
     display: flex;
@@ -22,15 +25,6 @@ export const Form = styled.form`
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: 700;
+    text-align: center;
   }
-`;
-
-export const Row = styled.div`
-  width: 282px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 15px auto;
-  font-size: 16px;
-  font-weight: 700;
 `;

@@ -1,4 +1,4 @@
-import { useLocation, useHistory, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -11,7 +11,6 @@ import { Form, Row } from "../../components/Auth";
 import UserContext from "../../context/UserContext";
 
 export default function SignIn() {
-  const location = useLocation();
   const history = useHistory();
   const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
@@ -60,7 +59,7 @@ export default function SignIn() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <Button type="submit" color="primary" disabled={loading} location={location}>
+          <Button type="submit" color="primary" disabled={loading}>
             Entrar
           </Button>
         </fieldset>
