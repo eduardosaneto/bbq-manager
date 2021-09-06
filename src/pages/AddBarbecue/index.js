@@ -24,6 +24,7 @@ export default function AddBarbecue() {
   const [loading, setLoading] = useState(false);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
+  const userId = localstorage.token.user.id;
   const { user } = useContext(UserContext);
   const { setFood } = useContext(FoodContext);
   const { setDrink } = useContext(DrinkContext);
@@ -48,7 +49,7 @@ export default function AddBarbecue() {
       observations,
       amountCollected: 0,
       totalParticipants: 0,
-      userId: user.id,
+      userId,
     };
 
     const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/send-barbecue`, body, config);
