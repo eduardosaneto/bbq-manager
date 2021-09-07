@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import AddNewPerson from "../../../pages/SelectedBarbecue/AddNewPerson";
 
-export default function BarbecueTitle({ barbecueId, name, getBarbecue, foodValue, drinkValue }) {
+export default function BarbecueTitle({ barbecueId, name, foodValue, drinkValue }) {
   const [shouldAddPerson, setShouldAddPerson] = useState(false);
 
   function addPerson() {
@@ -18,7 +18,6 @@ export default function BarbecueTitle({ barbecueId, name, getBarbecue, foodValue
         barbecueId={barbecueId}
         shouldAddPerson={shouldAddPerson}
         setShouldAddPerson={setShouldAddPerson}
-        getBarbecue={getBarbecue}
         foodValue={foodValue}
         drinkValue={drinkValue}
       />

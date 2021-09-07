@@ -33,17 +33,9 @@ export const AddPerson = styled.div`
 export const Beer = styled(IoBeer)`
   font-size: 40px;
   margin-top: 10px;
-
-  .check {
-    color: #ffd836;
-  }
 `;
 
 export const Money = styled(RiMoneyDollarCircleLine)`
   font-size: 40px;
   margin-top: 10px;
-
-  .check Money {
-    color: #ffd836;
-  }
 `;

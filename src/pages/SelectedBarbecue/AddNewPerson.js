@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import { AddPerson, Beer, Money } from "../../components/Barbecues/SelectedBarbecue/AddPerson";
 import { Form } from "../../components/Form";
@@ -9,7 +10,6 @@ export default function AddNewPerson({
   barbecueId,
   shouldAddPerson,
   setShouldAddPerson,
-  getBarbecue,
   foodValue,
   drinkValue,
 }) {
@@ -20,6 +20,8 @@ export default function AddNewPerson({
   const [loading, setLoading] = useState(false);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
+
+  const close = { autoClose: 3000 };
 
   function cancel() {
     setShouldAddPerson(false);
@@ -48,20 +50,23 @@ export default function AddNewPerson({
       config,
     );
     request.then(response => {
+      toast.success("Uhull, partiu churras!", close);
       setShouldAddPerson(false);
       setName("");
       setLoading(false);
-      getBarbecue(config);
+      window.location.reload();
     });
     request.catch(error => {
-      alert("Dê um nome para o seu hábito");
+      toast.error("Dê um nome para o seu hábito", close);
       setLoading(false);
     });
   }
 
   function selectDrink() {
-    setDrinks(true);
-    setAmountToPay(foodValue + drinkValue);
+    if (!drinks) {
+      setDrinks(true);
+      setAmountToPay(foodValue + drinkValue);
+    } else setDrinks(false);
   }
 
   return (
@@ -74,7 +79,10 @@ export default function AddNewPerson({
               <div>
                 <div>
                   <Beer className={`${drinks ? "check" : ""}`} onClick={selectDrink} />
-                  <Money className={`${payed ? "check" : ""}`} onClick={() => setPayed(true)} />
+                  <Money
+                    className={`${payed ? "check" : ""}`}
+                    onClick={() => (!payed ? setPayed(true) : setPayed(false))}
+                  />
                 </div>
                 <div>
                   <button type="button" onClick={cancel}>
