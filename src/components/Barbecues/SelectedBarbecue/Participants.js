@@ -4,7 +4,7 @@ export default function Participants({ name, amountToPay, payed }) {
   return (
     <Box>
       <span>
-        <div className={payed ? "check" : ""}></div>
+        <div className={`${payed ? "check" : ""}`}></div>
         <h2>{name}</h2>
       </span>
       <h2>R${amountToPay},00</h2>

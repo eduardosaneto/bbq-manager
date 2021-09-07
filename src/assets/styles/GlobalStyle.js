@@ -31,6 +31,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .check {
+    background-color: #ffd836;
+  }
+
+  .selected {
     color: #ffd836;
   }
 `;

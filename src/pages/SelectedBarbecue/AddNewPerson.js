@@ -6,13 +6,7 @@ import { AddPerson, Beer, Money } from "../../components/Barbecues/SelectedBarbe
 import { Form } from "../../components/Form";
 import Input from "../../components/Form/Input";
 
-export default function AddNewPerson({
-  barbecueId,
-  shouldAddPerson,
-  setShouldAddPerson,
-  foodValue,
-  drinkValue,
-}) {
+export default function AddNewPerson({ barbecueId, shouldAddPerson, setShouldAddPerson, foodValue, drinkValue }) {
   const [name, setName] = useState("");
   const [drinks, setDrinks] = useState(false);
   const [amountToPay, setAmountToPay] = useState(foodValue);
@@ -78,9 +72,9 @@ export default function AddNewPerson({
               <Input type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} />
               <div>
                 <div>
-                  <Beer className={`${drinks ? "check" : ""}`} onClick={selectDrink} />
+                  <Beer className={`${drinks ? "selected" : ""}`} onClick={selectDrink} />
                   <Money
-                    className={`${payed ? "check" : ""}`}
+                    className={`${payed ? "selected" : ""}`}
                     onClick={() => (!payed ? setPayed(true) : setPayed(false))}
                   />
                 </div>
