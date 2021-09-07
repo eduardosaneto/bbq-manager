@@ -3,9 +3,10 @@ import churrasBackground from "../../assets/images/churrasBackground.JPG";
 import { AiOutlineMenu } from "react-icons/ai";
 import Logout from "./Logout";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Title() {
+  const location = useLocation();
   const [showBox, setShowBox] = useState(0);
 
   function toggleBox() {
@@ -21,7 +22,11 @@ export default function Title() {
               <h1>BBQ Manager</h1>
             </Link>
           </div>
-          <Options onClick={toggleBox} />
+          {location.pathname === "/sign-up" || location.pathname === "/" ? (
+            <></>
+          ) : (
+            <Options onClick={toggleBox} />
+          )}
           {showBox === 1 && <Logout />}
         </span>
       </TitleStyle>

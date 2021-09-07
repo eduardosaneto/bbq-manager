@@ -15,7 +15,6 @@ export default function AddBarbecue() {
   const [people, setPeople] = useState([]);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
-  const dayjs = require("dayjs");
 
   const close = { autoClose: 3000 };
 
