@@ -15,6 +15,7 @@ export default function AddBarbecue() {
   const [people, setPeople] = useState([]);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
+  const dayjs = require("dayjs");
 
   const close = { autoClose: 3000 };
 
@@ -53,7 +54,12 @@ export default function AddBarbecue() {
       <Title />
       <Background>
         <Container>
-          <BarbecueTitle id={id} name={barbecue.name} />
+          <BarbecueTitle
+            barbecueId={barbecue.id}
+            name={barbecue.name}
+            foodValue={barbecue.foodValue}
+            drinkValue={barbecue.drinkValue}
+          />
           <BarbecueInfo
             date={barbecue.date}
             amount={barbecue.amountCollected}

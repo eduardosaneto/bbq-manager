@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,25 +9,18 @@ import Background from "../../components/Barbecues/Background";
 import Button from "../../components/Form/Button";
 import Title from "../../components/Title";
 
-import UserContext from "../../context/UserContext";
-import FoodContext from "../../context/FoodContext";
-import DrinkContext from "../../context/DrinkContext";
-
 export default function AddBarbecue() {
   const history = useHistory();
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-  const [foodMoney, setFoodMoney] = useState(null);
-  const [drinkMoney, setDrinkMoney] = useState(null);
+  const [foodValue, setFoodValue] = useState(null);
+  const [drinkValue, setDrinkValue] = useState(null);
   const [description, setDescription] = useState("");
   const [observations, setObservations] = useState("");
   const [loading, setLoading] = useState(false);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
   const userId = localstorage.token.user.id;
-  const { user } = useContext(UserContext);
-  const { setFood } = useContext(FoodContext);
-  const { setDrink } = useContext(DrinkContext);
 
   const close = { autoClose: 3000 };
 
@@ -47,6 +40,8 @@ export default function AddBarbecue() {
       date,
       description,
       observations,
+      foodValue,
+      drinkValue,
       amountCollected: 0,
       totalParticipants: 0,
       userId,
@@ -54,8 +49,6 @@ export default function AddBarbecue() {
 
     const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/send-barbecue`, body, config);
     request.then(response => {
-      setFood(foodMoney);
-      setDrink(drinkMoney);
       history.push("/barbecues");
     });
     request.catch(error => {
@@ -95,7 +88,7 @@ export default function AddBarbecue() {
               min="0"
               max="9999"
               step="0.01"
-              onChange={e => setFoodMoney(e.target.value)}
+              onChange={e => setFoodValue(e.target.value)}
               required
             />
             <Input
@@ -105,7 +98,7 @@ export default function AddBarbecue() {
               min="0"
               max="9999"
               step="0.01"
-              onChange={e => setDrinkMoney(e.target.value)}
+              onChange={e => setDrinkValue(e.target.value)}
               required
             />
             <Input

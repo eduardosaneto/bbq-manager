@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 import Details from "./Details";
 import Participants from "./Participants";
@@ -10,6 +11,7 @@ export default function BarbecueInfo({ date, amount, totalPeople, obs, descripti
         <h1>{date}</h1>
         <div>
           <span>
+            <People />
             <p>{totalPeople}</p>
           </span>
           <span>
@@ -86,4 +88,9 @@ const Container = styled.div`
     color: #000;
     margin-right: 5px;
   }
+`;
+
+const People = styled(BsFillPeopleFill)`
+  font-size: 18px;
+  margin-right: 7px;
 `;
