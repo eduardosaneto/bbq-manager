@@ -6,6 +6,7 @@ import GlobalStyle from "./assets/styles/GlobalStyle";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Barbecues from "./pages/Barbecues";
+import SelectedBarbecue from "./pages/SelectedBarbecue";
 import AddBarbecue from "./pages/AddBarbecue";
 
 import UserContext from "./context/UserContext";
@@ -34,6 +35,9 @@ function App() {
                 </Route>
                 <Route path="/barbecues" exact>
                   <Barbecues />
+                </Route>
+                <Route path="/barbecues/:id" exact>
+                  <SelectedBarbecue />
                 </Route>
                 <Route path="/add-barbecue" exact>
                   <AddBarbecue />

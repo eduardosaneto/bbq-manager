@@ -1,31 +1,28 @@
 import styled from "styled-components";
-import { useHistory, useParams } from "react-router";
+import Details from "./Details";
+import Participants from "./Participants";
 
-export default function Box( { barbecues } ) {
-  const { name, date, amountCollected, totalParticipants } = barbecues;
-  
-  const history = useHistory();
-  const { id } = useParams();
-
+export default function BarbecueInfo() {
   return (
-    <>
-      <BarbecueBox key={barbecues.id} onClick={() => history.push(`/barbecues/${id}`)}>
-        <h1>{name}</h1>
-        <h2>{date}</h2>
+    <Container>
+      <span>
+        <h1>23/11</h1>
         <div>
           <span>
-            <p>{totalParticipants}</p>
+            <p>10</p>
           </span>
           <span>
-            <p>R${amountCollected},00</p>
+            <p>R$20,00</p>
           </span>
         </div>
-      </BarbecueBox>
-    </>
+      </span>
+      <Details />
+      <Participants />
+    </Container>
   );
 }
 
-const BarbecueBox = styled.div`
+const Container = styled.div`
   width: 100%;
   padding: 14px;
   margin-bottom: 20px;
@@ -36,10 +33,17 @@ const BarbecueBox = styled.div`
   border-radius: 5px;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   background: #ffffff;
-  position: relative;
 
-  h1 {
-    font-size: 24px;
+  > span {
+    width: 100%;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  > span > h1 {
+    font-size: 35px;
     font-weight: 800;
     line-height: 32px;
     color: #000;
@@ -47,28 +51,28 @@ const BarbecueBox = styled.div`
     text-align: left;
   }
 
-  h2 {
+  > span > h2 {
     font-size: 21px;
     font-weight: 700;
     line-height: 27px;
     color: #000;
     margin-bottom: 10px;
-    text-align: left;
   }
 
-  div {
-    width: 100%;
-    height: 40px;
+  > span > div {
+    width: 20%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
   }
 
-  span {
+  > span > div > span {
     width: 100px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
   }
 
@@ -78,6 +82,5 @@ const BarbecueBox = styled.div`
     line-height: 24px;
     color: #000;
     margin-right: 5px;
-    text-align: left;
   }
 `;
