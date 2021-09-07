@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Details from "./Details";
 import Participants from "./Participants";
 
-export default function BarbecueInfo({ id, userId, date, amount, totalPeople, obs, description, people }) {
+export default function BarbecueInfo({ date, amount, totalPeople, obs, description, people }) {
   return (
     <Container>
       <span>
@@ -18,7 +18,9 @@ export default function BarbecueInfo({ id, userId, date, amount, totalPeople, ob
         </div>
       </span>
       <Details obs={obs} description={description} />
-      <Participants id={id} userId={userId} people={people} />
+      {people.map(p => {
+        return <Participants key={p.id} name={p.name} amountToPay={p.amountToPay} payed={p.payed} />;
+      })}
     </Container>
   );
 }

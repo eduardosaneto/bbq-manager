@@ -59,7 +59,7 @@ export default function AddBarbecue() {
       history.push("/barbecues");
     });
     request.catch(error => {
-      toast("Há algum erro no envio do seu churrasco", close);
+      toast.error("Há algum erro no envio do seu churrasco", close);
       setLoading(false);
     });
   }
