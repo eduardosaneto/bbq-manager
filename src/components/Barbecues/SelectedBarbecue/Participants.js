@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
-export default function Participants({ id, userId }) {
+export default function Participants({ id, userId, people }) {
   return (
-    <Box>
-      <span>
-        <div></div>
-        <h2>Lucas</h2>
-      </span>
-      <h2>R$20,00</h2>
-    </Box>
+    <>
+      {people.map(p => {
+        <Box>
+          <span>
+            <div className={p.payed ? "check" : ""}></div>
+            <h2>{p.name}</h2>
+          </span>
+          <h2>R${p.amounToPay},00</h2>
+        </Box>;
+      })}
+    </>
   );
 }
 

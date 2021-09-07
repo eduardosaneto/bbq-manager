@@ -3,14 +3,14 @@ import styled from "styled-components";
 import Details from "./Details";
 import Participants from "./Participants";
 
-export default function BarbecueInfo({ id, userId, date, amount, people, obs, description }) {
+export default function BarbecueInfo({ id, userId, date, amount, totalPeople, obs, description, people }) {
   return (
     <Container>
       <span>
         <h1>{date}</h1>
         <div>
           <span>
-            <p>{people}</p>
+            <p>{totalPeople}</p>
           </span>
           <span>
             <p>R${amount},00</p>
@@ -18,7 +18,7 @@ export default function BarbecueInfo({ id, userId, date, amount, people, obs, de
         </div>
       </span>
       <Details obs={obs} description={description} />
-      <Participants id={id} userId={userId} />
+      <Participants id={id} userId={userId} people={people} />
     </Container>
   );
 }

@@ -16,6 +16,7 @@ export default function AddBarbecue() {
   const history = useHistory();
   const { id } = useParams();
   const [barbecue, setBarbecue] = useState([]);
+  const [people, setPeople] = useState([]);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
 
@@ -31,6 +32,16 @@ export default function AddBarbecue() {
     });
   }
 
+  function getBarbecuePeople(config) {
+    const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/barbecues/${id}/participants`, config);
+    request.then(response => {
+      setPeople(response.data);
+    });
+    request.catch(() => {
+      toast.error("Não foi possível carregar os participantes do churrasco", close);
+    });
+  }
+
   useEffect(() => {
     const config = {
       headers: {
@@ -38,6 +49,7 @@ export default function AddBarbecue() {
       },
     };
     getBarbecue(config);
+    getBarbecuePeople(config);
   }, [token]);
 
   return (
@@ -51,9 +63,10 @@ export default function AddBarbecue() {
             userId={barbecue.userId}
             date={barbecue.date}
             amount={barbecue.amountCollected}
-            people={barbecue.totalParticipants}
+            totalPeople={barbecue.totalParticipants}
             obs={barbecue.observations}
             description={barbecue.description}
+            people={people}
           />
         </Container>
       </Background>
