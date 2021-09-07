@@ -53,7 +53,13 @@ export default function AddBarbecue() {
       <Title />
       <Background>
         <Container>
-          <BarbecueTitle id={id} name={barbecue.name} />
+          <BarbecueTitle 
+            barbecueId={barbecue.id}
+            name={barbecue.name} 
+            getBarbecue={getBarbecue} 
+            foodValue={barbecue.foodValue} 
+            drinkValue={barbecue.drinkValue}
+          />
           <BarbecueInfo
             date={barbecue.date}
             amount={barbecue.amountCollected}

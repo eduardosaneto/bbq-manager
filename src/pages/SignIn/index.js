@@ -31,7 +31,7 @@ export default function SignIn() {
     setLoading(true);
     const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-in`, body);
     request.then(response => {
-      setUser(response.data.token.user);
+      setUser(response.data);
       const userSerial = JSON.stringify(response.data);
       localStorage.setItem("user", userSerial);
       history.push("/barbecues");

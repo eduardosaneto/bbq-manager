@@ -1,17 +1,33 @@
+import { useState } from "react";
 import styled from "styled-components";
 
-export default function BarbecueTitle({ id, name }) {
+import AddNewPerson from "../../../pages/SelectedBarbecue/AddNewPerson";
+
+export default function BarbecueTitle({ barbecueId, name, getBarbecue, foodValue, drinkValue }) {
+  const [shouldAddPerson, setShouldAddPerson] = useState(false);
+
+  function addPerson() {
+    setShouldAddPerson(true);
+  }
+
   return (
     <Box>
       <h1>{name}</h1>
-      <button>Adicione uma pessoa</button>
+      <button onClick={addPerson}>Adicione uma pessoa</button>
+      <AddNewPerson
+        barbecueId={barbecueId}
+        shouldAddPerson={shouldAddPerson}
+        setShouldAddPerson={setShouldAddPerson}
+        getBarbecue={getBarbecue}
+        foodValue={foodValue}
+        drinkValue={drinkValue}
+      />
     </Box>
   );
 }
 
 const Box = styled.div`
   width: 100%;
-  height: 100px;
   padding: 10px;
   margin-bottom: 15px;
   display: flex;
