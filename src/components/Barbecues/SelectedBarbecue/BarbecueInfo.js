@@ -4,7 +4,7 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import Details from "./Details";
 import Participants from "./Participants";
 
-export default function BarbecueInfo({ date, amount, totalPeople, obs, description, people }) {
+export default function BarbecueInfo({ barbecueId, date, amount, totalPeople, obs, description, people }) {
   return (
     <Container>
       <span>
@@ -21,7 +21,16 @@ export default function BarbecueInfo({ date, amount, totalPeople, obs, descripti
       </span>
       <Details obs={obs} description={description} />
       {people.map(p => {
-        return <Participants key={p.id} name={p.name} amountToPay={p.amountToPay} payed={p.payed} />;
+        return (
+          <Participants
+            key={p.id}
+            id={p.id}
+            barbecueId={barbecueId}
+            name={p.name}
+            amountToPay={p.amountToPay}
+            payed={p.payed}
+          />
+        );
       })}
     </Container>
   );

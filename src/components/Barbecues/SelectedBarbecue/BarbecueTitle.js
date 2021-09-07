@@ -54,5 +54,6 @@ const Box = styled.div`
     font-size: 18px;
     font-weight: 700;
     color: #fff;
+    cursor: pointer;
   }
 `;

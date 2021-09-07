@@ -16,6 +16,7 @@ export const AddPerson = styled.div`
     border-radius: 10px;
     font-size: 15.976px;
     line-height: 20px;
+    cursor: pointer;
   }
 
   button:first-child {
@@ -33,9 +34,11 @@ export const AddPerson = styled.div`
 export const Beer = styled(IoBeer)`
   font-size: 40px;
   margin-top: 10px;
+  cursor: pointer;
 `;
 
 export const Money = styled(RiMoneyDollarCircleLine)`
   font-size: 40px;
   margin-top: 10px;
+  cursor: pointer;
 `;

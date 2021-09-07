@@ -61,6 +61,7 @@ export default function AddBarbecue() {
             drinkValue={barbecue.drinkValue}
           />
           <BarbecueInfo
+            barbecueId={barbecue.id}
             date={barbecue.date}
             amount={barbecue.amountCollected}
             totalPeople={barbecue.totalParticipants}

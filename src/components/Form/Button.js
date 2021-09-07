@@ -12,6 +12,7 @@ const Button = styled.button`
   font-size: 18px;
   font-weight: 700;
   color: #fff;
+  cursor: pointer;
 
   :disabled {
     background: rgba(0, 0, 0, 0.8);

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import { BsFillPeopleFill } from "react-icons/bs";
 
-export default function Box( { barbecues } ) {
+export default function Box({ barbecues }) {
   const { id, name, date, amountCollected, totalParticipants } = barbecues;
-  
+
   const history = useHistory();
 
   return (
@@ -13,6 +14,7 @@ export default function Box( { barbecues } ) {
         <h2>{date}</h2>
         <div>
           <span>
+            <People />
             <p>{totalParticipants}</p>
           </span>
           <span>
@@ -36,6 +38,7 @@ const BarbecueBox = styled.div`
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   background: #ffffff;
   position: relative;
+  cursor: pointer;
 
   h1 {
     font-size: 24px;
@@ -79,4 +82,9 @@ const BarbecueBox = styled.div`
     margin-right: 5px;
     text-align: left;
   }
+`;
+
+const People = styled(BsFillPeopleFill)`
+  font-size: 18px;
+  margin-right: 7px;
 `;
