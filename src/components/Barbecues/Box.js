@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 
 export default function Box( { barbecues } ) {
-  const { name, date, amountCollected, totalParticipants } = barbecues;
+  const { id, name, date, amountCollected, totalParticipants } = barbecues;
   
   const history = useHistory();
-  const { id } = useParams();
 
   return (
     <>

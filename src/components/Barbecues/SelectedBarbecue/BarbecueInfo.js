@@ -1,23 +1,24 @@
 import styled from "styled-components";
+
 import Details from "./Details";
 import Participants from "./Participants";
 
-export default function BarbecueInfo() {
+export default function BarbecueInfo({ id, userId, date, amount, people, obs, description }) {
   return (
     <Container>
       <span>
-        <h1>23/11</h1>
+        <h1>{date}</h1>
         <div>
           <span>
-            <p>10</p>
+            <p>{people}</p>
           </span>
           <span>
-            <p>R$20,00</p>
+            <p>R${amount},00</p>
           </span>
         </div>
       </span>
-      <Details />
-      <Participants />
+      <Details obs={obs} description={description} />
+      <Participants id={id} userId={userId} />
     </Container>
   );
 }

@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
-export default function Details() {
+export default function Details({ obs, description }) {
   return (
     <Box>
       <span>
-        <p>Descrição</p>
+        <p>
+          <strong>Descrição:</strong> {description}
+        </p>
       </span>
       <span>
-        <p>Observação</p>
+        <p>
+          <strong>Observações adicionais:</strong> {obs}
+        </p>
       </span>
     </Box>
   );

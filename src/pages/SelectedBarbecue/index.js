@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { useHistory } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -10,28 +10,51 @@ import Button from "../../components/Form/Button";
 import Title from "../../components/Title";
 import { Container } from "../../components/Barbecues/Container";
 import BarbecueInfo from "../../components/Barbecues/SelectedBarbecue/BarbecueInfo";
+import BarbecueTitle from "../../components/Barbecues/SelectedBarbecue/BarbecueTitle";
 
 export default function AddBarbecue() {
   const history = useHistory();
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [foodMoney, setFoodMoney] = useState(null);
-  const [drinkMoney, setDrinkMoney] = useState(null);
-  const [description, setDescription] = useState("");
-  const [observations, setObservations] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+  const [barbecue, setBarbecue] = useState([]);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
-  const userId = localstorage.token.user.id;
 
   const close = { autoClose: 3000 };
+
+  function getBarbecue(config) {
+    const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/barbecues/${id}`, config);
+    request.then(response => {
+      setBarbecue(response.data[0]);
+    });
+    request.catch(() => {
+      toast.error("Não foi possível carregar o seu churrasco", close);
+    });
+  }
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    getBarbecue(config);
+  }, [token]);
 
   return (
     <>
       <Title />
       <Background>
         <Container>
-          <BarbecueInfo />
+          <BarbecueTitle id={id} name={barbecue.name} />
+          <BarbecueInfo
+            id={id}
+            userId={barbecue.userId}
+            date={barbecue.date}
+            amount={barbecue.amountCollected}
+            people={barbecue.totalParticipants}
+            obs={barbecue.observations}
+            description={barbecue.description}
+          />
         </Container>
       </Background>
     </>

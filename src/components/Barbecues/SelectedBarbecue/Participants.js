@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Participants() {
+export default function Participants({ id, userId }) {
   return (
     <Box>
       <span>
