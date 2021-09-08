@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,12 +9,15 @@ import { Container } from "../../components/Barbecues/Container";
 import BarbecueInfo from "../../components/Barbecues/SelectedBarbecue/BarbecueInfo";
 import BarbecueTitle from "../../components/Barbecues/SelectedBarbecue/BarbecueTitle";
 
+import AmountToPayContext from "../../context/AmountToPayContext";
+
 export default function AddBarbecue() {
   const { id } = useParams();
   const [barbecue, setBarbecue] = useState([]);
   const [people, setPeople] = useState([]);
   const localstorage = JSON.parse(localStorage.user);
   const token = localstorage.token.token;
+  const { setAmountToPay } = useContext(AmountToPayContext);
 
   const close = { autoClose: 3000 };
 
@@ -22,6 +25,7 @@ export default function AddBarbecue() {
     const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/barbecues/${id}`, config);
     request.then(response => {
       setBarbecue(response.data[0]);
+      setAmountToPay(response.data[0].foodValue);
     });
     request.catch(() => {
       toast.error("Não foi possível carregar o seu churrasco", close);

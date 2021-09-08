@@ -29,6 +29,10 @@ export const AddPerson = styled.div`
     background: #ffd836;
     color: #fff;
   }
+
+  :disabled {
+    background: rgba(255, 216, 54, 0.8);
+  }
 `;
 
 export const Beer = styled(IoBeer)`

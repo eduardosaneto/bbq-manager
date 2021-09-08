@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 import { AddPerson, Beer, Money } from "../../components/Barbecues/SelectedBarbecue/AddPerson";
 import { Form } from "../../components/Form";
 import Input from "../../components/Form/Input";
+import AmountToPayContext from "../../context/AmountToPayContext";
 
 export default function AddNewPerson({ barbecueId, shouldAddPerson, setShouldAddPerson, foodValue, drinkValue }) {
+  const { amountToPay, setAmountToPay } = useContext(AmountToPayContext);
   const [name, setName] = useState("");
   const [drinks, setDrinks] = useState(false);
-  const [amountToPay, setAmountToPay] = useState(foodValue);
   const [payed, setPayed] = useState(false);
   const [loading, setLoading] = useState(false);
   const localstorage = JSON.parse(localStorage.user);
@@ -23,6 +24,8 @@ export default function AddNewPerson({ barbecueId, shouldAddPerson, setShouldAdd
 
   function addPerson(e) {
     e.preventDefault();
+
+    setLoading(true);
 
     const config = {
       headers: {
@@ -51,7 +54,7 @@ export default function AddNewPerson({ barbecueId, shouldAddPerson, setShouldAdd
       window.location.reload();
     });
     request.catch(error => {
-      toast.error("Dê um nome para o seu hábito", close);
+      toast.error("Houve algum erro", close);
       setLoading(false);
     });
   }
@@ -60,7 +63,10 @@ export default function AddNewPerson({ barbecueId, shouldAddPerson, setShouldAdd
     if (!drinks) {
       setDrinks(true);
       setAmountToPay(foodValue + drinkValue);
-    } else setDrinks(false);
+    } else {
+      setDrinks(false);
+      setAmountToPay(foodValue);
+    }
   }
 
   return (
@@ -69,7 +75,7 @@ export default function AddNewPerson({ barbecueId, shouldAddPerson, setShouldAdd
         <AddPerson>
           <Form onSubmit={addPerson}>
             <fieldset disabled={`${loading ? "disabled" : ""}`}>
-              <Input type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} />
+              <Input type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} required />
               <div>
                 <div>
                   <Beer className={`${drinks ? "selected" : ""}`} onClick={selectDrink} />
