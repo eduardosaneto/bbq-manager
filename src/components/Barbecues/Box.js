@@ -5,13 +5,16 @@ import { BsFillPeopleFill } from "react-icons/bs";
 export default function Box({ barbecues }) {
   const { id, name, date, amountCollected, totalParticipants } = barbecues;
 
+  const dayjs = require("dayjs");
+  let barbecueDate = dayjs(date).locale("pt-br");
+
   const history = useHistory();
 
   return (
     <>
       <BarbecueBox key={barbecues.id} onClick={() => history.push(`/barbecues/${id}`)}>
         <h1>{name}</h1>
-        <h2>{date}</h2>
+        <h2>{barbecueDate.format("DD/MM")}</h2>
         <div>
           <span>
             <People />

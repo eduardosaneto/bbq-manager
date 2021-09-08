@@ -5,10 +5,13 @@ import Details from "./Details";
 import Participants from "./Participants";
 
 export default function BarbecueInfo({ barbecueId, date, amount, totalPeople, obs, description, people }) {
+  const dayjs = require("dayjs");
+  let barbecueDate = dayjs(date).locale("pt-br");
+
   return (
     <Container>
       <span>
-        <h1>{date}</h1>
+        <h1>{barbecueDate.format("DD/MM")}</h1>
         <div>
           <span>
             <People />
