@@ -17,6 +17,7 @@ https://trinca-bbq-manager.vercel.app/
 - [ ] Split foods and drinks into more categories (vegans, for example)
 - [ ] Edit barbecue
 - [ ] Delete barbecue
+- [ ] Delete a person from barbecue
 ## Tech tools 🔧
 The following tools and frameworks were used in the construction of the project:<br>
 <p>
